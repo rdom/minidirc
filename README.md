@@ -159,6 +159,7 @@ example:
 -t3            test variable
                [double]
 
+```
 
 ![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/mdirc_4.png)
 
@@ -174,4 +175,5 @@ cd minidirc/macro
 root draw_hp.C'("../build/hits.root")'
 ```
 Example of 10 ions (Z = 90) with 9000 GeV/c momentum  @ 90 degree:
+
 ![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/hp.png)

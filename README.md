@@ -174,7 +174,7 @@ Visualization of 100 events:
 ```
 ./eicdirc -o data/tmp.root -r 1 -g 1 -c 2031 -l 3 -v 0 -ev 0 -x "opticalphoton" -p "3.18 eV"  -e 100
 ```
-![alt text](https://github.com/rdom/eicdirc/raw/master/pic/mdirc_4.png)
+![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/mdirc_4.png)
 
 
 ## Example of script usage from macro folder
@@ -187,5 +187,5 @@ cd minidirc/build
 cd minidirc/macro
 root draw_hp.C'("../build/hits.root")'
 ```
-Example of 1k of 6 GeV/c pions @ 30 degree:
-![alt text](https://github.com/rdom/eicdirc/raw/master/pic/hp_pi_1k.png)
+Example of 10 ions (Z = 90) with 9000 GeV/c momentum  @ 90 degree:
+![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/hp.png)

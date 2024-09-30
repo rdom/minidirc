@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   TString macro, particle = "pi+", infile = "", lutfile = "", pdffile = "", nnfile = "",
                  outfile = "";
   int events(0), pdgid(0), geometry(0), firstevent(0), runtype(0), study(0), fid(0), verbose(0),
-    batchmode(0), physlist(0), pmtLayout(2031), correction(2), field(0), ev(0), radiator(0),
+    batchmode(0), physlist(0), pmtLayout(4), correction(2), field(0), ev(0), radiator(0),
     lensId(0), displayOpt(0), ionz(90);
   double momentum(0), theta(90), phi(0), beamZ(0), trackingres(0.0005), dark_noise(0),
     prismStepX(0), prismStepY, beamX(0), timeSigma(0.1), timeCut(0.5), testVal1(0), testVal2(0),
@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
     run->setPmtLayout(pmtLayout);
     if (pmtLayout == 4) {
       run->setNpmt(6);
-      run->setNpix(4096);
+      run->setNpix(16*16);
     }
     if (pmtLayout == 3) {
       run->setNpmt(1);

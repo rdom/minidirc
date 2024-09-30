@@ -436,7 +436,7 @@ G4VPhysicalVolume *PrtDetectorConstruction::Construct() {
     }
     new G4PVPlacement(0, G4ThreeVector(0, 0, 0), lMcp, "wMcp", lFd, false, 1);
   }
-  if (fMcpLayout == 2031) {
+  if (fMcpLayout == 4) {
 
     G4Box *gMcp = new G4Box("gMcp", fMcpTotal[0] / 2., fMcpTotal[1] / 2., fMcpTotal[2] / 2.);
     lMcp = new G4LogicalVolume(gMcp, BarMaterial, "lMcp", 0, 0, 0);
@@ -448,27 +448,27 @@ G4VPhysicalVolume *PrtDetectorConstruction::Construct() {
     fNpix1 = 16;
     fNpix2 = 16;
 
+    int mcpId = 0;
+    int pixId = 0;
+
     // The MCP Pixel
-    G4Box *gPixel = new G4Box("gPixel", 0.5 * fMcpActive[0] / fNpix1, 0.5 * fMcpActive[1] / fNpix2,
-                              fMcpActive[2] / 16.);
+    G4Box *gPixel =
+      new G4Box("gPixel", 0.5 * fMcpActive[0] / fNpix1, 0.5 * fMcpActive[1] / fNpix2, 0.01);
     lPixel = new G4LogicalVolume(gPixel, BarMaterial, "lPixel", 0, 0, 0);
 
-    for (int i = 0; i < fNpix2; i++) {
-      for (int j = 0; j < fNpix1; j++) {
-        double shiftx =
-          i * (fMcpActive[0] / fNpix1) - fMcpActive[0] / 2. + 0.5 * fMcpActive[0] / fNpix1;
-        double shifty =
-          j * (fMcpActive[1] / fNpix2) - fMcpActive[1] / 2. + 0.5 * fMcpActive[1] / fNpix2;
+    for (int j = 0; j < fNpix2; j++) {
+      for (int i = 0; i < fNpix1; i++) {
+        double shiftx = (i + 0.5) * (fMcpActive[0] / fNpix1) - 0.5 * fMcpActive[0];
+        double shifty = (j + 0.5) * (fMcpActive[1] / fNpix2) - 0.5 * fMcpActive[1];
         new G4PVPlacement(0, G4ThreeVector(shiftx, shifty, 0), lPixel, "wPixel", lMcp, false,
-                          fNpix2 * i + j);
+                          pixId++);
       }
     }
 
-    int mcpId = 0;
     double gapx = (fFd[1] - fNCol * fMcpTotal[0]) / (double)(fNCol + 1);
     double gapy = (fFd[0] - fNRow * fMcpTotal[1]) / (double)(fNRow + 1);
-    for (int i = 0; i < fNCol; i++) {
-      for (int j = 0; j < fNRow; j++) {
+    for (int j = 0; j < fNRow; j++) {
+      for (int i = 0; i < fNCol; i++) {
         double shiftx = i * (fMcpTotal[0] + gapx) - 0.5 * (fFd[1] - fMcpTotal[0]) + gapx;
         double shifty = j * (fMcpTotal[1] + gapy) - 0.5 * (fFd[0] - fMcpTotal[1]) + gapy;
         new G4PVPlacement(0, G4ThreeVector(shiftx, shifty, 0), lMcp, "wMcp", lFd, false, mcpId++);

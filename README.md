@@ -160,20 +160,6 @@ example:
                [double]
 
 
-```
-
-## LUT generation
-
-```
-cd eicdirc/build
-mkdir data
-./eicdirc -o data/lut.root -r 1 -g 1 -c 2031 -l 3 -v 0 -ev 0 -x "opticalphoton" -p "3.18 eV"  -e 1000000 -b 1
-```
-
-Visualization of 100 events:
-```
-./eicdirc -o data/tmp.root -r 1 -g 1 -c 2031 -l 3 -v 0 -ev 0 -x "opticalphoton" -p "3.18 eV"  -e 100
-```
 ![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/mdirc_4.png)
 
 

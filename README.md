@@ -2,21 +2,16 @@
 ```
 #install and initialize geant4 with -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON
 
-git clone https://github.com/rdom/prttools
-git clone https://github.com/rdom/eicdirc
-cd eicdirc
+git clone https://github.com/rdom/minidirc
+cd minidirc
 mkdir build
 cd build
 cmake ..
 make -j4
 
-#neural network
-install tensorflow libs, cppflow and run:
-cmake -DAI=1 ..
-
 
 #test event display
-./eicdirc -r 0 -theta 30 -x "pi+" -p 6.0 -e 1
+ ./mdirc -x ion -ionz 90 -e 1
 ```
 
 
@@ -25,7 +20,8 @@ cmake -DAI=1 ..
 eicdirc [OPTION] [ARGUMENT] ... [OPTION] [ARGUMENT]
 
 example:
-./eicdirc -r 0 -theta 30 -x "pi+" -p 6.0 -e 1
+./mdirc -x ion -ionz 90 -p 9000 -theta 90 -e 10 -b 1
+
 ```
 ## Options
 ```
@@ -52,12 +48,7 @@ example:
 		4    solenoidal 3.0T
 
 -g    geometry configuration
-                0    generic 
-                1    ePIC one barbox (default)
-		2    CORE one barbox
-		10   generic whole DIRC
-		11   ePIC whole DIRC
-		12   CORE whole DIRC
+                0    Mini Dirc (default)
 		
 -ev   expansion volume type
 	        0    prism with lenses (default)
@@ -86,7 +77,7 @@ example:
                 10   ideal lens (thickness = 0, ideal focusing)
 
 -theta    polar between particle beam and bar radiator [deg]
-                25 default
+                90 default
                 if theta == 0 then theta = [30,160]
 
 -phi  azimuth angle between particle beam and bar radiator [deg]
@@ -97,7 +88,8 @@ example:
 -e    number of simulated events
 
 -x    particle type
-              "pi+" (default)
+              ion default)
+              "pi+"
               "proton"
               "kaon+"
                  ...
@@ -107,8 +99,12 @@ example:
               "mix_pik"  1 pion 1 kaon mix
 	      "mix_pip"  1 pion 1 proton mix
 	      "mix_kp"   1 kaon 1 proton mix
+
+-ionz Z of the ion
+               90 (default)
 	      
 -p    particle momentum [GeV/c]
+      9000 (default)
 
 -w    physical list
                 0    standard EM (default)
@@ -178,48 +174,7 @@ Visualization of 100 events:
 ```
 ./eicdirc -o data/tmp.root -r 1 -g 1 -c 2031 -l 3 -v 0 -ev 0 -x "opticalphoton" -p "3.18 eV"  -e 100
 ```
-![alt text](https://github.com/rdom/eicdirc/raw/master/pic/eicdirc_lut_gen.png)
-
-
-LUT averaging:
-```
-cd eicdirc/macro
-root -q -b lutmean.C'("../build/data/lut.root")'
-```
-
-## Simulation/Reconstruction:
-
-For geometrical reconstruction one needs to generate ~2000 events (example for 6 GeV/c pion/kaon mix @ 30 degree polar angle):
-```
-cd eicdirc/build
-./eicdirc -r 0 -o data/sim.root -theta 30 -x "mix_pik" -p 6 -w 0 -g 1 -c 2031 -l 3 -trackingres 0.0005 -e 2000 -b 1
-```
-Geometrical reconstruction requires LUT ("lut.avr.root" which was previously created):
-```
-./eicdirc -r 2 -i data/sim.root -u data/lut.avr.root -o data/reco.root -trackingres 0.0005 -timeres 0.1 -timecut 0.2 -e 2000 -v 2
-```
-after first execution it will create per-pmt corrections "sim.root_corr.root" which will be automatically applied during next executions (use same command):
-```
-./eicdirc -r 2 -i data/sim.root -u data/lut.avr.root -o data/reco.root -trackingres 0.0005 -timeres 0.1 -timecut 0.2 -e 2000 -v 3
-```
-as a result the program will create figures of relevant parameters (in "data/reco") and store PID information in "data/reco.root"
-
-For time imaging one needs to generate ~25000 events.
-```
-./eicdirc -r 0 -o data/sim.root -theta 30 -x "mix_pik" -p 6 -w 0 -g 1 -c 2031 -l 3 -trackingres 0.0005 -e 25000 -b 1
-```
-the last 20k events [5000,20000] will be used to generate Probability Density Functions (needed for time imaging):
-```
-./eicdirc -r 4 -i data/sim.root -u data/lut.avr.root -trackingres 0.0005 -timeres 0.1 -timecut 0.2 -e 5000
-```
-it will create "data/sim.pdf.root". Note: the start event number for PDFs (5000) is hard coded at the moment.
-
-The time imaging reconstruction:
-```
-./eicdirc -r 2 -i data/sim.root -u data/lut.avr.root -pdf data/sim.pdf.root -o data/reco.root -trackingres 0.0005 -timeres 0.1 -timecut 0.2 -e 5000 -v 3
-
-```
-
+![alt text](https://github.com/rdom/eicdirc/raw/master/pic/mdirc_4.png)
 
 
 ## Example of script usage from macro folder
@@ -227,8 +182,10 @@ The time imaging reconstruction:
 Hit pattern:
 
 ```
-cd eicdirc/macro
-root loadlib.C draw_hp.C'("../build/data/sim.root")'
+cd minidirc/build
+./mdirc -x ion -ionz 90 -e 10 -b 1
+cd minidirc/macro
+root draw_hp.C'("../build/hits.root")'
 ```
 Example of 1k of 6 GeV/c pions @ 30 degree:
 ![alt text](https://github.com/rdom/eicdirc/raw/master/pic/hp_pi_1k.png)

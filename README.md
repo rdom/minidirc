@@ -17,7 +17,7 @@ make -j4
 
 ## Synopsis
 ```
-eicdirc [OPTION] [ARGUMENT] ... [OPTION] [ARGUMENT]
+mdirc [OPTION] [ARGUMENT] ... [OPTION] [ARGUMENT]
 
 example:
 ./mdirc -x ion -ionz 90 -p 9000 -theta 90 -e 10 -b 1

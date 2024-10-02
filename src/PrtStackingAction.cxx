@@ -136,7 +136,7 @@ G4ClassificationOfNewTrack PrtStackingAction::ClassifyNewTrack(const G4Track *aT
         double lambda = 197.0 * 2.0 * pi / (aTrack->GetMomentum().mag() * 1.0E6);
 
         // if (lambda < 380 || lambda > 400) return fKill; // wavelength filter
-	if (gRandom->Uniform(0., 1.) < 0.9999)
+	if (gRandom->Uniform(0., 1.) < 0.99)
 	  return fKill;
         double ra = gRandom->Uniform(0., 1.);
         if (ra > fDetEff[1]->Eval(lambda)) {

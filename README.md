@@ -64,11 +64,8 @@ example:
 -h    number of bars in one radiator box (use with "-g 0")
 
 -c    PMT layout
-                0    4x6 standard MCPs (pixel size == mcp size)
-                1    4x6 standard MCPs (6.4x6.4 pixels)
-		3    one MCP covers whole PD plain (3 mm x 3 mm pixels)
-		4    2x3 LAPD
-		2031    4x6 MCPs with compact packing and 32x32 pixels (2 mm x 2 mm) (default)
+                0    one PMT (20 mm x 20 mm) (default)
+                4    one PMT covering whole back of EV
 		
 -l    focusing system
                 0    no lens

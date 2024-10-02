@@ -112,8 +112,11 @@ void PrtPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
     //  if(id==3)  vec.setTheta(M_PI-70*deg);
     //  if(id==3)  vec.setPhi(250*deg);
 
-    double trackresolution = fRun->getBeamSize();
+    double beamsigma = fRun->getBeamSize();
+    double xpos = G4RandGauss::shoot(0, beamsigma);
+    ypos = G4RandGauss::shoot(0, beamsigma);
 
+     
     // if (theta > 0 && theta < M_PI) {
     //   if (trackresolution < 0.00001) {
     //     vec.setTheta(theta);
@@ -131,8 +134,7 @@ void PrtPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
 
     // }
 
-    theta = G4RandGauss::shoot(0, trackresolution);
-    fParticleGun->SetParticlePosition(G4ThreeVector(0, ypos, zpos));
+    fParticleGun->SetParticlePosition(G4ThreeVector(xpos, ypos, zpos));
     fParticleGun->SetParticleMomentumDirection(vec);
   }
 

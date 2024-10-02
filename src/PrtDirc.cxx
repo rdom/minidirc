@@ -33,9 +33,9 @@ int main(int argc, char **argv) {
   TString macro, particle = "pi+", infile = "", lutfile = "", pdffile = "", nnfile = "",
                  outfile = "";
   int events(0), pdgid(0), geometry(0), firstevent(0), runtype(0), study(0), fid(0), verbose(0),
-    batchmode(0), physlist(0), pmtLayout(4), correction(2), field(0), ev(0), radiator(0),
+    batchmode(0), physlist(0), pmtLayout(0), correction(2), field(0), ev(0), radiator(0),
     lensId(0), displayOpt(0), ionz(90);
-  double momentum(0), theta(90), phi(0), beamZ(0), trackingres(0.0005), dark_noise(0),
+  double momentum(0), theta(90), phi(0), beamZ(0), beamSize(0), trackingres(0.0005), dark_noise(0),
     prismStepX(0), prismStepY, beamX(0), timeSigma(0.1), timeCut(0.5), testVal1(0), testVal2(0),
     testVal3(0);
   long seed = 0;
@@ -72,6 +72,7 @@ int main(int argc, char **argv) {
     else if (G4String(argv[i]) == "-gsy") prismStepY = atof(argv[i + 1]);
     else if (G4String(argv[i]) == "-gz") beamZ = atof(argv[i + 1]);
     else if (G4String(argv[i]) == "-gx") beamX = atof(argv[i + 1]);
+    else if (G4String(argv[i]) == "-gs") beamSize = atof(argv[i + 1]);
     else if (G4String(argv[i]) == "-timeres") timeSigma = atof(argv[i + 1]);
     else if (G4String(argv[i]) == "-timecut") timeCut = atof(argv[i + 1]);
     else if (G4String(argv[i]) == "-trackingres") trackingres = atof(argv[i + 1]);
@@ -169,6 +170,7 @@ int main(int argc, char **argv) {
     run->setPrismStepY(prismStepY);
     run->setBeamX(beamX);
     run->setBeamZ(beamZ);
+    run->setBeamSize(beamSize);
     run->setPid(pdgid);
     run->setIonZ(ionz);
   }

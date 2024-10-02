@@ -186,7 +186,7 @@ TCanvas *PrtTools::draw_digi(double maxz, double minz, TCanvas *cdigi) {
   toppad->Draw();
   toppad->cd();
 
-  int nrow = 3, ncol = 5;
+  int nrow = 1, ncol = 1;
   if (_pmtlayout == 2016) ncol = 3;
   if (_pmtlayout == 2017) ncol = 4;
   if (_pmtlayout == 2018 || _pmtlayout == 2023) {
@@ -211,8 +211,8 @@ TCanvas *PrtTools::draw_digi(double maxz, double minz, TCanvas *cdigi) {
     ncol = 18;
   }
   if (_pmtlayout == 4) {
-    nrow = 2;
-    ncol = 3;
+    nrow = 1;
+    ncol = 1;
   }
   if (_pmtlayout == 3) {
     nrow = 1;

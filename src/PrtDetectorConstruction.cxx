@@ -83,7 +83,31 @@ PrtDetectorConstruction::PrtDetectorConstruction() : G4VUserDetectorConstruction
   fRadius = 970;
   fNBoxes = 16;
 
-  if (fGeomType == 0 || fGeomType == 10) {
+  if (fGeomType == 0) {
+
+    // PMT layout
+    fNRow = 1;
+    fNCol = 1;
+
+    // PMT dimensions
+    fMcpTotal[0] = fMcpTotal[1] = 20 + 0.1;
+    fMcpTotal[2] = 1;
+    fMcpActive[0] = fMcpActive[1] = 20;
+    fMcpActive[2] = 1;
+
+    // expansion volume
+    fPrizm[0] = 25;
+    fPrizm[1] = 25; // depth
+    fPrizm[2] = 25;
+    fPrizm[3] = 25;
+
+    // radiator
+    fBar[0] = 10;  // height
+    fBar[1] = 6;   // thickness
+    fBar[2] = 150; // length
+  }
+
+  if (fGeomType == 1) {
     fNRow = 2;
     fNCol = 3;
     fPrizm[0] = 175;
@@ -385,44 +409,16 @@ G4VPhysicalVolume *PrtDetectorConstruction::Construct() {
       }
     }
   }
-  if (fMcpLayout == 0) {
-    // The MCP
-    G4Box *gMcp = new G4Box("gMcp", fPrizm[2] / 2., fPrizm[0] / 2., fMcpTotal[2] / 2.);
-    lMcp = new G4LogicalVolume(gMcp, BarMaterial, "lMcp", 0, 0, 0);
-
-    // The MCP Pixel
-    fNpix1 = 4;
-    fNpix2 = 6;
-    G4Box *gPixel = new G4Box("gPixel", fMcpTotal[0] / 2., fMcpTotal[1] / 2., fMcpTotal[2] / 16.);
-    lPixel = new G4LogicalVolume(gPixel, BarMaterial, "lPixel", 0, 0, 0);
-
-    // double disx = (fPrizm[0]-fNpix2*fMcpTotal[0])/(double)fNpix2;
-    double disy = (fPrizm[1] - fNpix1 * fMcpTotal[0]) / (double)(fNpix1 + 1);
-    if (true) {
-      for (int i = 0; i < fNpix1; i++) {
-        for (int j = 0; j < fNpix2; j++) {
-          double shiftx =
-            i * (fMcpTotal[0] + disy / 2.) - fPrizm[2] / 2. + fMcpTotal[0] / 2. + disy / 2.;
-          double shifty =
-            j * (fMcpTotal[0] + disy / 2.) - fPrizm[0] / 2. + fMcpTotal[0] / 2. + disy / 2.;
-          new G4PVPlacement(0, G4ThreeVector(shiftx, shifty, 0), lPixel, "wPixel", lMcp, false,
-                            fNpix1 * i + j);
-        }
-      }
-    } else {
-      new G4PVPlacement(fdRot, G4ThreeVector(0, 0, 0), lPixel, "wPixel", lMcp, false, 1);
-    }
-    new G4PVPlacement(0, G4ThreeVector(0, 0, 0), lMcp, "wMcp", lFd, false, 1);
-  }
-  if (fMcpLayout == 3) {
+ 
+  if (fMcpLayout == 4) {
     // one mcp layout
     G4Box *gMcp = new G4Box("gMcp", 0.5 * fPrizm[2], 0.5 * fPrizm[0], 0.5 * fMcpTotal[2]);
     lMcp = new G4LogicalVolume(gMcp, BarMaterial, "lMcp", 0, 0, 0);
 
     double pixSize = 3 * mm;
 
-    fNpix1 = fPrizm[2] / pixSize - 1;
-    fNpix2 = fPrizm[0] / pixSize - 1;
+    fNpix1 = 16; //fPrizm[2] / pixSize - 1;
+    fNpix2 = 16; //fPrizm[0] / pixSize - 1;
 
     G4Box *gPixel = new G4Box("gPixel", 0.5 * fPrizm[2] / fNpix1, 0.5 * fPrizm[0] / fNpix2, 0.2);
     lPixel = new G4LogicalVolume(gPixel, BarMaterial, "lPixel", 0, 0, 0);
@@ -436,7 +432,7 @@ G4VPhysicalVolume *PrtDetectorConstruction::Construct() {
     }
     new G4PVPlacement(0, G4ThreeVector(0, 0, 0), lMcp, "wMcp", lFd, false, 1);
   }
-  if (fMcpLayout == 4) {
+  if (fMcpLayout == 0) {
 
     G4Box *gMcp = new G4Box("gMcp", fMcpTotal[0] / 2., fMcpTotal[1] / 2., fMcpTotal[2] / 2.);
     lMcp = new G4LogicalVolume(gMcp, BarMaterial, "lMcp", 0, 0, 0);

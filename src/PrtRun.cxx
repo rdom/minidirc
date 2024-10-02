@@ -43,7 +43,7 @@ TString PrtRun::getInfo() {
   info += Form("%-50s %*.4f \n", "Time cut constant",  b,fTimeCut);
   info += Form("%-50s %*.4f \n", "Dark Noise ", b, fDarkNoise);
 
-  info += Form("%-40s %*.4f%*.4f \n", "beam (x,z)", b, fBeamX, b, fBeamZ);
+  info += Form("%-40s %*.4f%*.4f \n", "beam (x,z,s)", b, fBeamX, b, fBeamZ, b, fBeamSize);
   info += Form("%-40s %*.4f%*.4f \n", "Prism step (x,y)", b, fPrismStepX, b, fPrismStepY);
   info += Form("%-40s %*.4f%*.4f \n", "Tracking resolution (theta, phi)", b, fTrackingResTheta, b,
                fTrackingResPhi);

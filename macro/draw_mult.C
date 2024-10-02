@@ -8,12 +8,15 @@ void draw_mult(TString infile = "../build/hits.root") {
 
   PrtTools t(infile);
 
-  TH1F *hmult90 = new TH1F("hmult90", ";detected photons [#];entries [#]", 500, 550000, 650000);
-  TH1F *hmult91 = new TH1F("hmult91", ";detected photons [#];entries [#]", 500, 550000, 650000);
-  TH1F *hmult95 = new TH1F("hmult915", ";detected photons [#];entries [#]", 500, 550000, 650000);
+  TH1F *hmult90 = new TH1F("hmult90", ";detected photons [#];entries [#]", 500, 0, 650000);
+  TH1F *hmult91 = new TH1F("hmult91", ";detected photons [#];entries [#]", 500, 0, 650000);
+  TH1F *hmult95 = new TH1F("hmult915", ";detected photons [#];entries [#]", 500, 0, 650000);
 
   while (t.next() && t.i() < 10000) {
-    hmult90->Fill(t.event()->getHits().size() * 100);
+    int yield = t.event()->getHits().size() * 100;
+    std::cout << "yield " << yield << std::endl;
+    
+    hmult90->Fill(yield);
   }
   // PrtTools t1("../build/ion_91.root");
   // while (t1.next()) {

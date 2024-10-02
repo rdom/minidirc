@@ -82,6 +82,9 @@ example:
 		use [990, 999] (corresponds to bar # [0,9]) to choose which bar should be hit (works also with -field 2, for > ~4 GeV/c)
 		same use of [990, 999] for LUT generation		
 
+-gs  Gaussian sigma of the beam size (in X and Y) [mm]
+                0 (default)
+
 -e    number of simulated events
 
 -x    particle type

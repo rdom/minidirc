@@ -4,7 +4,7 @@ PrtRun::PrtRun()
   : fShortInfo(""), fName(""), fId(0), fRunType(0), fStudy(0), fMc(0), fPhysList(0), fPid(0),
     fField(0), fGeometry(0), fEv(0), fLens(0), fRadiator(0), fPmtLayout(0), fTrigger(0), fNpmt(0),
     fNpix(0), fCorrection(0), fTheta(0), fPhi(0), fMomentum(0), fPrismStepX(0), fPrismStepY(0),
-    fBeamX(0), fBeamZ(0), fBeamSize(0), fTrackingResTheta(0), fTrackingResPhi(0), fTimeSigma(0),
+    fBeamX(0), fBeamY(0), fBeamZ(0), fBeamSize(0), fTrackingResTheta(0), fTrackingResPhi(0), fTimeSigma(0),
     fTimeCut(0), fSimOffset(0), fRadiatorL(0), fRadiatorW(0), fRadiatorH(0), fDarkNoise(0),
     fTest1(0), fTest2(0), fTest3(0), fIonZ(0) {}
 
@@ -43,7 +43,7 @@ TString PrtRun::getInfo() {
   info += Form("%-50s %*.4f \n", "Time cut constant",  b,fTimeCut);
   info += Form("%-50s %*.4f \n", "Dark Noise ", b, fDarkNoise);
 
-  info += Form("%-40s %*.4f%*.4f \n", "beam (x,z,s)", b, fBeamX, b, fBeamZ, b, fBeamSize);
+  info += Form("%-40s %*.4f%*.4f \n", "beam (x,y,z,s)", b, fBeamX, fBeamY, b, fBeamZ, b, fBeamSize);
   info += Form("%-40s %*.4f%*.4f \n", "Prism step (x,y)", b, fPrismStepX, b, fPrismStepY);
   info += Form("%-40s %*.4f%*.4f \n", "Tracking resolution (theta, phi)", b, fTrackingResTheta, b,
                fTrackingResPhi);

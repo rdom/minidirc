@@ -44,6 +44,7 @@ class PrtRun : public TObject {
   Double_t getPrismStepX() const { return fPrismStepX; }
   Double_t getPrismStepY() const { return fPrismStepY; }
   Double_t getBeamX() const { return fBeamX; }
+  Double_t getBeamY() const { return fBeamY; }
   Double_t getBeamZ() const { return fBeamZ; }
   Double_t getBeamSize() const { return fBeamSize; }
   Double_t getTrackingResTheta() const { return fTrackingResTheta; }     	
@@ -85,6 +86,7 @@ class PrtRun : public TObject {
   void setPrismStepX(Double_t v) { fPrismStepX = v; }
   void setPrismStepY(Double_t v) { fPrismStepY = v; }
   void setBeamX(Double_t v) { fBeamX = v; }
+  void setBeamY(Double_t v) { fBeamY = v; }
   void setBeamZ(Double_t v) { fBeamZ = v; }
   void setBeamSize(Double_t v) { fBeamSize = v; }
   void setTrackingResTheta(Double_t v) { fTrackingResTheta = v; }
@@ -128,6 +130,7 @@ class PrtRun : public TObject {
   Double_t fPrismStepX;
   Double_t fPrismStepY;
   Double_t fBeamX;
+  Double_t fBeamY;
   Double_t fBeamZ;
   Double_t fBeamSize;
   Double_t fTrackingResTheta;

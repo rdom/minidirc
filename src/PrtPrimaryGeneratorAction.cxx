@@ -59,7 +59,8 @@ void PrtPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
   double theta = (180 - fRun->getTheta()) * TMath::DegToRad();
   double phi = fRun->getPhi() * TMath::DegToRad();
   double zpos = fRun->getBeamZ();
-  double ypos = fRun->getBeamX();
+  double xpos = fRun->getBeamX();
+  double ypos = fRun->getBeamY();
   int ionz = fRun->getIonZ();
   fRadiatorL = fRun->getRadiatorL();
   fRadiatorW = fRun->getRadiatorW();
@@ -113,8 +114,8 @@ void PrtPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent) {
     //  if(id==3)  vec.setPhi(250*deg);
 
     double beamsigma = fRun->getBeamSize();
-    double xpos = G4RandGauss::shoot(0, beamsigma);
-    ypos = G4RandGauss::shoot(0, beamsigma);
+    xpos = G4RandGauss::shoot(xpos, beamsigma);
+    ypos = G4RandGauss::shoot(ypos, beamsigma);
 
      
     // if (theta > 0 && theta < M_PI) {

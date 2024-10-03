@@ -141,10 +141,13 @@ example:
 	       2 apply Cherenkov angle and time corrections (default)
 	       5 (re)create corrections
 
--gx target's X offset
+-gx beam's X offset [mm]
                0 default
 
--gz target's Z offset
+-gy beam's Y offset [mm]
+               0 default
+
+-gz beam's Z offset [mm]
                0 default
 
 -dn dark noise per PMT

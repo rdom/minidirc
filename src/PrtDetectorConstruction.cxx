@@ -192,8 +192,8 @@ G4VPhysicalVolume *PrtDetectorConstruction::Construct() {
   // The Mirror
   G4Box *gMirror = new G4Box("gMirror", fMirror[0] / 2., fMirror[1] / 2., fMirror[2] / 2.);
   lMirror = new G4LogicalVolume(gMirror, MirrorMaterial, "lMirror", 0, 0, 0);
-  wMirror = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.5 * dirclength - fMirror[2] / 2.), lMirror,
-                              "wMirror", lDirc, false, 0);
+  // wMirror = new G4PVPlacement(0, G4ThreeVector(0, 0, -0.5 * dirclength - fMirror[2] / 2.), lMirror,
+  //                             "wMirror", lDirc, false, 0);
 
   // The Lenses
   if (fLensId == 2) { // 2-layer lens

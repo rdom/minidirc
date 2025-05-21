@@ -225,6 +225,7 @@ int main(int argc, char **argv) {
     // }
 
     runManager->SetUserInitialization(physicsList);
+
   } else {
     runManager->SetUserInitialization(new PrtPhysicsList());
   }
@@ -241,13 +242,16 @@ int main(int argc, char **argv) {
   G4UImanager *UImanager = G4UImanager::GetUIpointer();
 
   if (physlist == 1) {
-    UImanager->ApplyCommand("/process/inactivate Decay all");
-    UImanager->ApplyCommand("/process/inactivate compt all");
-    UImanager->ApplyCommand("/process/inactivate hIoni all");
-    UImanager->ApplyCommand("/process/inactivate eIoni all");
-    UImanager->ApplyCommand("/process/inactivate muIoni all");
-    UImanager->ApplyCommand("/process/inactivate conv all");
+    UImanager->ApplyCommand("/process/inactivate eBrem all");
+    // UImanager->ApplyCommand("/process/inactivate Decay all");
+    // UImanager->ApplyCommand("/process/inactivate compt all");
+    // UImanager->ApplyCommand("/process/inactivate hIoni all");
+    // UImanager->ApplyCommand("/process/inactivate eIoni all");
+    // UImanager->ApplyCommand("/process/inactivate muIoni all");
+    // UImanager->ApplyCommand("/process/inactivate conv all");
   }
+
+  if (physlist == 3) UImanager->ApplyCommand("/process/inactivate ionInelastic all");
 
   if (batchmode == 1) { // batch mode
     UImanager->ApplyCommand(Form("/run/beamOn %d", events));

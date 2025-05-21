@@ -96,10 +96,10 @@ PrtDetectorConstruction::PrtDetectorConstruction() : G4VUserDetectorConstruction
     fMcpActive[2] = 1;
 
     // expansion volume
-    fPrizm[0] = 25;
+    fPrizm[0] = 25; // height 
     fPrizm[1] = 25; // depth
-    fPrizm[2] = 25;
-    fPrizm[3] = 25;
+    fPrizm[2] = 25; // width at the PMT side 
+    fPrizm[3] = 25; // width at the radiator side 
 
     // radiator
     fBar[0] = 10;  // height

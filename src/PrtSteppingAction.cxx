@@ -26,11 +26,11 @@ void PrtSteppingAction::UserSteppingAction(const G4Step *step) {
   G4Track *track = step->GetTrack();
 
   // if (track->GetCurrentStepNumber() > 50000 || track->GetTrackLength() > 30000) {
-  if (track->GetTrackLength() > 10000) {
-    // std::cout<<"WRN: too many steps or track length > 30 m  N="
-    // <<track->GetCurrentStepNumber()<<" Len = "<<track->GetTrackLength()/1000. <<std::endl;
-    // track->SetTrackStatus(fStopAndKill);
-  }
+  // if (track->GetTrackLength() > 10000) {
+  // std::cout<<"WRN: too many steps or track length > 30 m  N="
+  // <<track->GetCurrentStepNumber()<<" Len = "<<track->GetTrackLength()/1000. <<std::endl;
+  // track->SetTrackStatus(fStopAndKill);
+  // }
 
   int parentId = track->GetParentID();
   G4String prevname = "", postvname = "";

@@ -113,17 +113,16 @@ G4ClassificationOfNewTrack PrtStackingAction::ClassifyNewTrack(const G4Track *aT
   auto pd = aTrack->GetDefinition();
 
   if (aTrack->GetParentID() > 0 && pd != G4OpticalPhoton::OpticalPhotonDefinition()) {
-    // if (aTrack->GetMomentum().mag() < 15.0 * MeV)
-    return fKill;
-    std::cout << pd->GetParticleName() << " " << aTrack->GetParentID() << " "
-              << aTrack->GetTrackID() << " ------------- " << aTrack->GetMomentum().mag() * MeV
-              << std::endl;
+  //   // if (aTrack->GetMomentum().mag() < 15.0 * MeV)
+  //   return fKill;
+    // std::cout << pd->GetParticleName() << " " << aTrack->GetParentID() << " "
+    //           << aTrack->GetTrackID() << " ------------- " << aTrack->GetMomentum().mag() * MeV
+    //           << std::endl;
   }
-  // if (aTrack->GetParentID() > 0 && pd == G4OpticalPhoton::OpticalPhotonDefinition()) return
-  // fKill;
+
+  // if (aTrack->GetParentID() == 1 && pd == G4OpticalPhoton::OpticalPhotonDefinition()) return fKill;
 
   if (pd == G4OpticalPhoton::OpticalPhotonDefinition()) { // particle is optical photon
-    // std::cout << "track->GetVertexPosition() " << aTrack->GetVertexPosition().z() << std::endl;
 
     if (fRunType == 0 || fRunType == 5 || fRunType == 10) { // for the simulation run
 

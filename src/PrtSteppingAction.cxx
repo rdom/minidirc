@@ -45,6 +45,7 @@ void PrtSteppingAction::UserSteppingAction(const G4Step *step) {
   //     postvname == "wExpHall")
   //   track->SetTrackStatus(fStopAndKill);
 
+  // if (prevname == "wPrizm" && postvname == "wDirc") track->SetTrackStatus(fStopAndKill); // backen EV sides  
   if (prevname == "wMcp" && postvname == "wDirc") track->SetTrackStatus(fStopAndKill);
   if (prevname == "wFd" && postvname == "wDirc") track->SetTrackStatus(fStopAndKill);
   if (prevname == "wBBWindow" && postvname == "wDirc") track->SetTrackStatus(fStopAndKill);

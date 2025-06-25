@@ -99,7 +99,12 @@ PrtDetectorConstruction::PrtDetectorConstruction() : G4VUserDetectorConstruction
     fPrizm[0] = 25; // height 
     fPrizm[1] = 25; // depth
     fPrizm[2] = 25; // width at the PMT side 
-    fPrizm[3] = 25; // width at the radiator side 
+    fPrizm[3] = 25; // width at the radiator side
+
+    // fPrizm[0] = 60; // height   CEH 19 June 2025 
+    // fPrizm[1] = 30; // depth
+    // fPrizm[2] = 60; // width at the PMT side 
+    // fPrizm[3] = 60; // width at the radiator side
 
     // radiator
     fBar[0] = 10;  // height

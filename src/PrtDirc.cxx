@@ -252,7 +252,8 @@ int main(int argc, char **argv) {
   }
 
   if (physlist == 3) UImanager->ApplyCommand("/process/inactivate ionInelastic all");
-
+  if (macro.EndsWith(".mac")) UImanager->ApplyCommand("/control/execute " + macro);
+  
   if (batchmode == 1) { // batch mode
     UImanager->ApplyCommand(Form("/run/beamOn %d", events));
   } else { // UI session for interactive mode

@@ -1,0 +1,2 @@
+/run/setCutForAGivenParticle e+ 0.5 mm
+/run/setCutForAGivenParticle e- 0.5 mm

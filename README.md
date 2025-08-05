@@ -162,6 +162,9 @@ example:
 -t3            test variable
                [double]
 
+-m geant4 macro
+                path to geant4 macro (must have .mac extension e.g. cuts.mac)
+
 ```
 
 ![alt text](https://raw.githubusercontent.com/rdom/minidirc/refs/heads/main/pic/mdirc_4.png)
